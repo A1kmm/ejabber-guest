@@ -1,0 +1,1 @@
+-record(guest_access, {username, default_subscribe}).
