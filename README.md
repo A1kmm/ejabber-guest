@@ -27,7 +27,7 @@ Add guest to the list of auth methods in ejabberd.cfg; if you haven't changed it
 Next, change the modules configuration to add mod_guest. You will want to find the list of modules in ejabberd.cfg, and add a new entry to the list (don't forget to add a comma after the last entry if you add it to the end):
 
 ```erlang
-  {mod_guest, [{guest_access, [{guest_access, "username1", true}, {guest_access, "username2", false}]}]}
+  {mod_guest, [{guest_access, [{"username1", true}, {"username2", false}]}]}
 ```
 Note that you can have any number of entries in the inner list - the above says that username1@host (for all hosts supported by the server) and username2@host can talk to guests connected as guest-something@host (where something can be any string). The true after username1 means that all guests that log in are added to username1's roster with a two-way subscription, so they can see each other's presence status.
 
