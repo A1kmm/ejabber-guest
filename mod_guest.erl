@@ -91,10 +91,6 @@ add_and_accept_local(User1, User2, Server) ->
     simulated_roster_iq(User2, User1, Server, subscribe),
     simulated_roster_iq(User1, User2, Server, subscribed).
 
-remove_roster_local(User1, User2, Server) ->
-    simulated_roster_iq(User1, User2, Server, unsubscribed),
-    simulated_roster_iq(User2, User1, Server, unsubscribed).
-
 process_guest_login(User, Server) ->
     case mod_guest:is_guest_name(User) of
         true ->
@@ -171,10 +167,4 @@ update_offline_dict(SessionCount, UserName, Server, OfflineGuests) ->
 finalise_guest(User, Server) ->
     ?DEBUG("mod_guest: finalise guest ~s@~s", [User, Server]),
     ejabberd_hooks:run(remove_user, Server, [User, Server]),
-    % SubscribeUsers =
-    %     lists:filter(fun(X) -> element(2, X) end,
-    %                  ets:lookup_element(guest_data, guest_access_list, 2)),
-    % lists:foldl(
-    %   fun({U, _}, _) -> remove_roster_local(User, U, Server) end,
-    %  [], SubscribeUsers),
     true.
