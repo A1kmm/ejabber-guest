@@ -16,7 +16,7 @@
          unregister_session/3
         ]).
 
--define(GUEST_CLEANUP_TIME, 10).
+-define(GUEST_CLEANUP_TIME, 300).
 
 start(Host, Opts) ->
     ets:new(guest_data, [set, named_table, {keypos, 1}]),
